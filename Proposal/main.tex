@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{lipsum}
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
+\title{Mining GitHub: A Statistical Analysis of Code Quality Metrics and Project Success in Open Source Repositories}
+\author{Lai Jiang\\
+  University of Connecticut Department of Statistics
+}
+
+\begin{document}
+\maketitle
+
+\paragraph{Introduction}
+Open-source development has rapidly become a cornerstone of modern software engineering. GitHub, the most prominent host for open-source projects, serves as both a collaborative platform and a goldmine of data regarding software development patterns, practices, and project outcomes. As of today, GitHub boasts over 100 million repositories, each carrying unique insights about the paradigms of successful software projects. However, while the popularity and importance of open-source projects are undoubted, the determinants of their success are less straightforward. What differentiates a widely-adopted, well-maintained project from one that falls by the wayside? Is it the quality of the code? The frequency of updates? Or perhaps the vibrancy of its contributing community? While anecdotal evidence and qualitative analyses have given us some insights, there is a significant gap in quantitative, data-driven understandings of these success factors. Code quality, in particular, has long been theorized as a critical factor influencing project adoption and longevity. Intuitively, a well-structured, readable, and documented codebase might attract more contributors and users. But to what extent does this theory hold? And are there specific code quality metrics that hold more weight than others? A systematic exploration of this dimension can have profound implications. For individual developers, it can guide best practices. For organizations, it offers insights into directing resources and attention. For the broader open-source community, it paves the way for more informed, collaborative efforts. This research, therefore, sets out to empirically examine the relationship between code quality metrics and the overall success of open-source projects on GitHub. By mining a rich dataset directly from GitHub's repositories, the study seeks to not only validate or challenge existing beliefs but also to illuminate previously unidentified patterns or insights that can guide future open-source endeavors.
+
+\paragraph{Objectives}
+This project will mainly focus to the three following contents: identify specific code quality metrics that significantly influence open-source project success; To measure the correlation between these metrics and indicators of project success such as stars, forks, and pull requests; and to derive actionable insights that open-source maintainers and contributors can use to enhance project success.
+
+\paragraph{Data Collections}
+The data for this project will gather comprehensive variables to fully explain the phenomenon in Python. This includes: Code Comments, Cyclomatic Complexity for code quality metrics; For projects, commits and issues are included. And finally, to show the decisive factor of project success: Folks, and stars. 
+The data will using two parts to retrieve information. First, for projects or repositories, GitHub API will be utilized. This could retrieve information about Forks, Number of Views, and user's 
+The second part, is the summary of the code itself. I will clone some repository and projects from random users, and use the outside dependencies called Pylint and Flake8 to help analyze the code and provide metrics.
+
+\paragraph{Research Methodology}
+After collecting the data and clone the repositories, I'll start to analyzing the code using Pylint first, to see how many flaws that a projects might have, is the comments valid to other users, Pylint will also generate me a report and final decision of that project. And after that, with the combination of the user information, use the mathematical methods such as Regression Analysis, and correlation matrices, to see what is the outcome, Normally it will be the relationship between code quality metrics and indicators of project success. If none of the relationship occurred, switch the sample and repeat the steps above again. 
+It's hypothesized that while certain code quality metrics, such as Cyclomatic complexity, might negatively correlate with project success, other metrics like documentation coverage might show a positive correlation. The depth and nature of these correlations will be central to the study's findings.
+
+\paragraph{Discussion}
+As I mentioned above, It's hypothesized that while certain code quality metrics, such as cyclomatic complexity, might negatively correlate with project success, other metrics like documentation coverage might show a positive correlation. The depth and nature of these correlations will be central to the study's findings.
+
+\bibliographystyle{plain}
+\bibliography{Citations.bib}
+\cite{7816479}
+\cite{7884605}
+
+\end{document}
