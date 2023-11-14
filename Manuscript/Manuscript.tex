@@ -47,7 +47,7 @@ When we're dealing with handwriting recognition tasks, choosing the right librar
 \section* {Data Augmentation}
 Data augmentation plays a crucial role in improving the performance of machine learning models in handwriting recognition. Given the inherent variability of human handwriting, robust and diverse datasets are critical for training effective models. Data augmentation involves artificially extending a training data set by creating modified versions of existing data. In handwriting recognition, this can be achieved using various techniques. A common method is geometric transformation, including rotating, scaling and translating images of handwritten text. This teaches the model to recognize characters and words appearing in different orientations and sizes. Another technique involves morphological operations such as eroding or stretching text, simulating different writing pressures and line widths. Adding noise, such as random pixel fluctuations, can also be beneficial as it prepares the model to handle real-world scenarios where handwritten text may be distorted or unclear.
 
-Data Augmentation also contains a subset, called the Color space augmentations. It can be used as adjust the brightness or contrast. These methods are particularly useful for colored ink or paper. The Elastic distortions would warp the image in a non-linear manner, effectively mimic the natural irregularities in handwriting. Further, synthetic data generation, where entirely new handwriting samples are generated using advanced techniques like Generative Adversarial Networks (GANs), offers a way to significantly expand the dataset, especially in scenarios where data collection is challenging or privacy concerns are paramount. These augmentation techniques not only help in creating a more robust model by providing a wide range of handwriting styles and conditions but also aid in reducing overfitting, ensuring that the model generalizes well to new, unseen data. The strategic use of data augmentation in handwriting recognition thus plays a crucial role in enhancing the accuracy and reliability of the resulting machine learning models.
+Data Augmentation also contains a subset, called the Color space augmentations. It can be used as adjust the brightness or contrast. These methods are particularly useful for colored ink or paper. The Elastic distortions would warp the image in a non-linear manner, effectively mimic the natural irregularities in handwriting. Further, synthetic data generation, where entirely new handwriting samples are generated using advanced techniques like Generative Adversarial Networks (GANs), offers a way to significantly expand the dataset, especially in scenarios where data collection is challenging or privacy concerns are paramount. These augmentation techniques not only help in creating a more robust model by providing a wide range of handwriting styles and conditions but also aid in reducing over fitting, ensuring that the model generalizes well to new, unseen data. The strategic use of data augmentation in handwriting recognition thus plays a crucial role in enhancing the accuracy and reliability of the resulting machine learning models.
 
 \section* {Algorithms in Handwriting Recognition}
 However, collecting and augmenting the data cannot do everything for us, As I mentioned previously, the MNIST dataset contains 60000 for training purposes and 10000 for optimizing the model, we have to choose a relatively credible approach to recognize what the user have written. For approaches, we now have: Traditional Machine Learning Approaches, Neural Network Approaches and Hybrid. Each of them contains various methods and concepts.
@@ -55,15 +55,34 @@ However, collecting and augmenting the data cannot do everything for us, As I me
 \paragraph{Traditional Machine Learning Approaches}
 The Traditional Machine Learning Approaches is the most fundamental and a little bit of antiquated way. The most well-known of these is the decision tree. The decision tree belongs to the supervised learning and it can tackle classification and regressions tasks. The process of it looks like a flowchart, and each node on the chart contains the "test result" of the event. Decision trees provide an intuitive way to extract decision rules from data. It can be visualized and is easy to understand, even for people without a technical background. At the same time, it also reveals the structure and patterns in the data, helping us understand how decisions are supported by data. For example, Suppose we have a data set about weather conditions and whether outdoor activities are performed, we can setup several parameters to estimate it, such as "Weather", which contains "Sunny, Cloudy, and Raining"; "Temperature", which contains "Hot, Proper, Cold", and the third parameter called "Do we want to do the outdoor activities" which only includes yes or no. Our goal is to create a decision tree that helps us decide whether to engage in outdoor activities based on weather conditions. On the climax of the tree, is "Do we want to do the outdoor activities", then, in the first layer of the tree, are the parameters of the weather "Sunny, Cloudy, and Windy" And after this layer, we can output the decisions with yes or no. In this case, sunny and cloudy, could be "yes", and "no" for the rainy. And after many layers of iteration, it could finally have the ability of predictions.
 
-Other approaches of Traditional Machine Learning includes 
+Other approaches of Traditional Machine Learning includes:
+\begin{itemize}
+    \item \textbf{k-nearest neighbors (KNN)}: For example, KNN is a non-parametric method for classification and regression. It is based on a simple principle: predict the label of a point by looking at the "k" closest labeled points and taking a majority vote or average. This method is particularly effective in scenarios with irregular decision boundaries.
+
+    \item \textbf{Support vector machines (SVM)}: SVM is very powerful for classification tasks, especially in high-dimensional spaces. They work by finding the hyperplane that best divides the dataset into categories. The ability of SVM to handle large feature spaces and its effectiveness when the number of dimensions exceeds the number of samples makes it a valuable tool in machine learning.
+
+    \item \textbf{Linear regression}: One of the simplest forms of machine learning, mainly used for regression tasks. The goal is to model the relationship between a dependent variable and one or more independent variables by fitting a linear equation to the observed data. The simplicity of linear regression makes it an excellent starting point for predictive modeling.
+\end{itemize}
+These traditional methods, although overshadowed by the rise of deep learning and neural networks, remain integral in scenarios where interpretability, simplicity, and speed are crucial. They are advantageous in situations with limited data to prevent overfitting and form the backbone of many hybrid approaches, combining strengths of traditional and modern techniques.
+
+
 
 \paragraph{Neural Network Approaches}
-Although there are many ways to emphasize and implement the machine learning and training process, the most common way that related to neural network could be elaborated like this: For example, if we have a hand-written number, say 7, in this case, how should we let the machine know it is 7? In the MNIST Dataset, all pictures in it are 5 to 5 scaled, which means there are 25 pixels in total. And then we can line them up into a one-dimensional column, and label them 1 if the block or pixel is 
+Although there are many ways to emphasize and implement the machine learning and training process, the most common way that related to neural network could be elaborated like this: For example, if we have a hand-written number, say 7, in this case, how should we let the machine know it is 7? In the MNIST Dataset, all pictures in it are 5 to 5 scaled, which means there are 25 pixels in total. And then we can line them up into a one-dimensional column, and label them 0 if the block or pixel is black, and 1 when this block is white. In order to proceed to the next step, we also need to number them from $X^{0}_{0}$ to $X^{0}_{24}$. The top number refers to the number of layers and the lower number refers to the number of the elements, and in this case, it is refers to every single pixel.
 
-\section{Further }
-\bibliographystyle{plain}
-\bibliography{Citations.bib}
-\cite{824821}
-\cite{NIPS2008_66368270}
-\cite{6981034}
+Now, the first node in the second layer could be calculated like this: 
+\begin{align}
+X^1_{0} &= (a^0_{0,0} \times x^0_{0} + b^0_{0,0}) + (a^0_{1,0} \times x^0_{1} + b^0_{1,0}) + \ldots + (a^0_{24,0} \times x^0_{24} + b^0_{24,0}) \\
+&= \sum_{i} (a^0_{i,1} \times x^0_{i} + b^0_{i,1})
+\end{align}
+The letter $a$ and $b$ are the lines here, and the letter i under each X and its parameters refers to the nodes in the previous layer, and the letter j refers to the nodes in the current layer, and similarly, we can also construct the layers of number 2, 3, and 4. And, with the increase of numbers of layers, the formula of the nodes are also extending. The letter k and k+1 refers to the overall layers in this training process, and the parameters, a and b could be arbitrary. The information of the image, spreading across with this formula and finally goes to the last layer of this network. 
+
+
+\section*{Further Improvements}
+
+%\bibliographystyle{plain}
+%\bibliography{Citations.bib}
+%\cite{824821}
+%\cite{NIPS2008_66368270}
+%\cite{6981034}
 \end{document}
