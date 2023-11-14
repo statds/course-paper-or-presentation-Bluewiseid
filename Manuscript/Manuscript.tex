@@ -7,6 +7,7 @@
 \usepackage{lipsum}
 \usepackage{setspace}
 \usepackage{tikz}
+\usepackage{pdfpages}
 \usepackage[colorlinks=true, citecolor=blue]{hyperref}
 \doublespacing
 \title{Machine Learning for Handwriting Recognition: Algorithms and Techniques}
@@ -65,10 +66,10 @@ Other approaches of Traditional Machine Learning includes:
 \end{itemize}
 These traditional methods, although overshadowed by the rise of deep learning and neural networks, remain integral in scenarios where interpretability, simplicity, and speed are crucial. They are advantageous in situations with limited data to prevent overfitting and form the backbone of many hybrid approaches, combining strengths of traditional and modern techniques.
 
-
-
 \paragraph{Neural Network Approaches}
-Although there are many ways to emphasize and implement the machine learning and training process, the most common way that related to neural network could be elaborated like this: For example, if we have a hand-written number, say 7, in this case, how should we let the machine know it is 7? In the MNIST Dataset, all pictures in it are 5 to 5 scaled, which means there are 25 pixels in total. And then we can line them up into a one-dimensional column, and label them 0 if the block or pixel is black, and 1 when this block is white. In order to proceed to the next step, we also need to number them from $X^{0}_{0}$ to $X^{0}_{24}$. The top number refers to the number of layers and the lower number refers to the number of the elements, and in this case, it is refers to every single pixel.
+Although there are many ways to emphasize and implement the machine learning and training process, the most common way that related to neural network could be elaborated like this: For example, if we have a hand-written number, say 7, in this case, how should we let the machine know it is 7? In the MNIST Dataset, all pictures in it are 5 to 5 scaled, which means there are 25 pixels in total. And then we can line them up into a one-dimensional column, and label them 0 if the block or pixel is black, and 1 when this block is white. In order to proceed to the next step, we also need to number them from $X^{0}_{0}$ to $X^{0}_{24}$. The top number refers to the number of layers and the lower number refers to the number of the elements, and in this case, it is refers to every single pixel.Blow is a figure of a complete computing process of handwriting recognition.
+\vspace{10pt}
+\includegraphics[page = 1, width=\linewidth]{Neural Networks Exemplar.pdf}
 
 Now, the first node in the second layer could be calculated like this: 
 \begin{align}
@@ -78,7 +79,14 @@ X^1_{0} &= (a^0_{0,0} \times x^0_{0} + b^0_{0,0}) + (a^0_{1,0} \times x^0_{1} + 
 The letter $a$ and $b$ are the lines here, and the letter i under each X and its parameters refers to the nodes in the previous layer, and the letter j refers to the nodes in the current layer, and similarly, we can also construct the layers of number 2, 3, and 4. And, with the increase of numbers of layers, the formula of the nodes are also extending. The letter k and k+1 refers to the overall layers in this training process, and the parameters, a and b could be arbitrary. The information of the image, spreading across with this formula and finally goes to the last layer of this network. 
 
 
-\section*{Further Improvements}
+\section*{Code Block}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+   printf("Hello, World!");
+   return 0;
+}
+\end{verbatim}
 
 %\bibliographystyle{plain}
 %\bibliography{Citations.bib}
