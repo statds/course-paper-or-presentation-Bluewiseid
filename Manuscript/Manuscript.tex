@@ -58,7 +58,8 @@ The Traditional Machine Learning Approaches is the most fundamental and a little
 
 Other approaches of Traditional Machine Learning includes:
 \begin{itemize}
-    \item \textbf{k-nearest neighbors (KNN)}: For example, KNN is a non-parametric method for classification and regression. It is based on a simple principle: predict the label of a point by looking at the "k" closest labeled points and taking a majority vote or average. This method is particularly effective in scenarios with irregular decision boundaries.
+    \item \textbf{k-nearest neighbors (KNN)}: KNN is a non-parametric method for classification and regression. It is based on a simple principle, which is predict the label of a point by looking at the "k" closest labeled points and taking a majority vote or average. This method is particularly effective in scenarios with irregular decision boundaries.
+
 
     \item \textbf{Support vector machines (SVM)}: SVM is very powerful for classification tasks, especially in high-dimensional spaces. They work by finding the hyperplane that best divides the dataset into categories. The ability of SVM to handle large feature spaces and its effectiveness when the number of dimensions exceeds the number of samples makes it a valuable tool in machine learning.
 
@@ -76,21 +77,54 @@ Now, the first node in the second layer could be calculated like this:
 X^1_{0} &= (a^0_{0,0} \times x^0_{0} + b^0_{0,0}) + (a^0_{1,0} \times x^0_{1} + b^0_{1,0}) + \ldots + (a^0_{24,0} \times x^0_{24} + b^0_{24,0}) \\
 &= \sum_{i} (a^0_{i,1} \times x^0_{i} + b^0_{i,1})
 \end{align}
-The letter $a$ and $b$ are the lines here, and the letter i under each X and its parameters refers to the nodes in the previous layer, and the letter j refers to the nodes in the current layer, and similarly, we can also construct the layers of number 2, 3, and 4. And, with the increase of numbers of layers, the formula of the nodes are also extending. The letter k and k+1 refers to the overall layers in this training process, and the parameters, a and b could be arbitrary. The information of the image, spreading across with this formula and finally goes to the last layer of this network. 
+The letter $a$ and $b$ are the lines here, and the letter i under each X and its parameters refers to the nodes in the previous layer, and the letter j refers to the nodes in the current layer, and similarly, we can also construct the layers of number 2, 3, and 4. And, with the increase of numbers of layers, the formula of the nodes are also extending. The letter k and k+1 refers to the overall layers in this training process, and the parameters, a and b could be arbitrary. The information of the image, spreading across with this formula and finally goes to the last layer of this network. But why there’re 10 results in the final output, the only thing we could image is the probability. This model is to recognize numbers from 0 – 9, so there are only ten possibilities, which just matches the final output. Each output refers to a number. For example, the $P_1$ here refers to the probability of the result is 1. But the parameters between layers, $a$ and $b$ are arbitrary, so, after the calculation from such number of layers, the result should also be arbitrary. Thus, we cannot ensure the probability is from 0 and 1. So, in order to keep the probability is larger than 0, and smaller than 1, we should do some operations. To ensure the probability on the layer of output is larger than 0, smaller than 1 and their sum is 1.
 
+In order to solve this, and let the We will introduce  the mathematical constant to let the probability follow this rule. By putting an e below every X and calculate their values. Therefore, every value will now larger than 0. Then we add them together, then we use the sum as denominator, and we get this formula, the table below shows the relationship.
 
-\section*{Code Block}
-\begin{verbatim}
-#include <stdio.h>
-int main() {
-   printf("Hello, World!");
-   return 0;
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{% This will scale the table to fit the text width
+\begin{tabular}{cccc}
+\hline
+\( X_0 \) & \( X_1 \) & \(\cdots\) & \( X_n \) \\
+\( e^{X_0} \) & \( e^{X_1} \) & \(\cdots\) & \( e^{X_n} \) \\
+\( \frac{e^{X_0}}{\sum{e^{X_i}}} \) & \( \frac{e^{X_1}}{\sum{e^{X_i}}} \) & \(\cdots\) & \( \frac{e^{X_n}}{\sum{e^{X_i}}} \) \\
+\hline
+\end{tabular}
 }
-\end{verbatim}
+\caption{Your caption here}
+\label{table:your_label}
+\end{table}
 
-%\bibliographystyle{plain}
-%\bibliography{Citations.bib}
-%\cite{824821}
-%\cite{NIPS2008_66368270}
-%\cite{6981034}
+
+
+\section*{Code Elucidation}
+The python file in my Code folder represents an examplar of the handwriting recognition in machine learning, the purpose of this file is first, we use all the pictures in MNIST Dataset to train and optimize the model, then it will ramdomly extract several pictures from the MNIST Dataset to see its result of prediction, the code was divided into four parts:
+\begin{verbatim}
+def __init__(self):
+        super().__init__()
+        self.fc1 = torch.nn.Linear(28*28, 64)
+        self.fc2 = torch.nn.Linear(64, 64)
+        self.fc3 = torch.nn.Linear(64, 64)
+        self.fc4 = torch.nn.Linear(64, 64)
+        self.fc5 = torch.nn.Linear(64, 10)
+\end{verbatim}
+This is the first paragraph of the code, it defined 5 layers, the first layer fc1 is the input which includes 28 pixels and 64 nodes, and the last layer fc5 contains 10 outputs, and 64 nodes as well. The 64 nodes in layer 2, 3, 4 are used for optimizing and training. And these whole stuff are contained in the "torch.nn.Module" class. 
+
+\begin{verbatim}
+     def forward(self, x):
+        x = torch.nn.functional.relu(self.fc1(x))
+        x = torch.nn.functional.relu(self.fc2(x))
+        x = torch.nn.functional.relu(self.fc3(x))
+        x = torch.nn.functional.relu(self.fc4(x))
+        x = torch.nn.functional.log_softmax(self.fc5(x), dim=1)
+        return x
+\end{verbatim}
+This paragraph just put an ReLu function outside of the layers and that is the activation function of the layer to ensure to produce the real probability. 
+
+\bibliographystyle{plain}
+\bibliography{Citations.bib}
+\cite{824821}
+\cite{NIPS2008_66368270}
+\cite{6981034}
 \end{document}
