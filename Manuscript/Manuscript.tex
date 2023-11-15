@@ -92,11 +92,11 @@ In order to solve this, and let the We will introduce  the mathematical constant
 \hline
 \end{tabular}
 }
-\caption{Your caption here}
+\caption{Softmax Normalization}
 \label{table:your_label}
 \end{table}
 
-
+As you can see
 
 \section*{Code Elucidation}
 The python file in my Code folder represents an examplar of the handwriting recognition in machine learning, the purpose of this file is first, we use all the pictures in MNIST Dataset to train and optimize the model, then it will ramdomly extract several pictures from the MNIST Dataset to see its result of prediction, the code was divided into four parts:
@@ -109,6 +109,7 @@ def __init__(self):
         self.fc4 = torch.nn.Linear(64, 64)
         self.fc5 = torch.nn.Linear(64, 10)
 \end{verbatim}
+
 This is the first paragraph of the code, it defined 5 layers, the first layer fc1 is the input which includes 28 pixels and 64 nodes, and the last layer fc5 contains 10 outputs, and 64 nodes as well. The 64 nodes in layer 2, 3, 4 are used for optimizing and training. And these whole stuff are contained in the "torch.nn.Module" class. 
 
 \begin{verbatim}
@@ -120,7 +121,29 @@ This is the first paragraph of the code, it defined 5 layers, the first layer fc
         x = torch.nn.functional.log_softmax(self.fc5(x), dim=1)
         return x
 \end{verbatim}
+
 This paragraph just put an ReLu function outside of the layers and that is the activation function of the layer to ensure to produce the real probability. 
+
+\begin{verbatim}
+    def get_data_loader(is_train): #Part 1
+    to_tensor = transforms.Compose([transforms.ToTensor()])
+    data_set = MNIST("", is_train, transform=to_tensor, download=True)
+    return DataLoader(data_set, batch_size=20, shuffle=True)
+    
+def evaluate(test_data, net): #Part 2
+    n_correct = 0
+    n_total = 0
+    with torch.no_grad():
+        for (x, y) in test_data:
+            outputs = net.forward(x.view(-1, 28*28))
+            for i, output in enumerate(outputs):
+                if torch.argmax(output) == y[i]:
+                    n_correct += 1
+                n_total += 1
+    return n_correct / n_total
+\end{verbatim}
+
+This paragraph was divided into two parts, the first part just import data from previous layers and make an output as a DataLoader, and the second, The evaluate function is used to estimate the accuracy of the recognition. First, we extract the data from the training set, calculate the accuracy of the neural network, and we compare this value to the Dataset. So these are the normal step of doing such operations in machine learning, especially when training models for handwriting recognition. 
 
 \bibliographystyle{plain}
 \bibliography{Citations.bib}
