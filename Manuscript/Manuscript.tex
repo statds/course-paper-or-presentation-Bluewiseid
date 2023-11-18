@@ -19,7 +19,7 @@
 \maketitle
 
 \section* {Abstract}
-This paper examines the interface between machine learning and handwriting recognition, an area that has grown significantly due to the development of powerful algorithms and sophisticated techniques. Despite the growing popularity of digital communications, handwriting remains a unique expression of personality that poses significant recognition challenges due to its variability and idiosyncrasies. This article explores the role of machine learning of basic concepts, data collection methods, data augmentation techniques, and various algorithmic approaches to handwriting recognition, including traditional machine learning and neural networks. The manuscript also discusses the impact of machine learning on the connection between human interactions and digital systems, highlighting its potential to improve user experience and facilitate digital interactions. By examining methods and advances in the field, this article reveals the future possibilities and applications of machine learning for accurately and efficiently processing handwritten text.
+As topic said, this paper mainly focused on machine learning and handwriting recognition, an area that has grown significantly due to the development of powerful algorithms and sophisticated techniques. It explores the role of machine learning from the basic concepts, data collection methods, data augmentation techniques, and various algorithmic approaches to handwriting recognition, including traditional machine learning and neural networks, a newer way. This article also discusses the impact of machine learning on the connection between human interactions and digital systems, highlighting its potential to improve user experience and facilitate digital interactions. By examining methods and advances in the field, the article reveals the future possibilities and applications of machine learning for accurately and efficiently processing handwritten text.
 
 %\section* {Keywords}
 %Machine Learning, Deep Learning, Handwriting Recognition, Activation Function, Model, Parameters...
@@ -30,13 +30,12 @@ In an era where digital communication pervades nearly every facet of our lives, 
 The importance of machine learning in handwriting recognition cannot be overstated, as it stands at the forefront of bridging human interaction with digital systems. This technology plays a crucial role in various applications that significantly impact our daily lives and professional sectors. In the banking industry, it revolutionizes processes by accurately reading handwritten cheques and forms, thus streamlining financial transactions and enhancing security. In the field of education, machine learning algorithms assist in evaluating handwritten exam responses, offering a more efficient grading system while also providing insights into students' learning patterns. Additionally, in historical research, these algorithms are indispensable for digitizing ancient manuscripts and documents, unlocking new realms of knowledge previously inaccessible due to the sheer volume and complexity of handwritten texts. Handwriting recognition also finds its use in personal devices, where it enhances user experience by allowing natural note-taking and communication in users' own handwriting, seamlessly integrating with various languages and scripts. The broad range of these applications not only underscores the versatility and adaptability of machine learning in handwriting recognition but also highlights its potential to transform and facilitate numerous aspects of our digital interactions.This essay delves into the heart of machine learning algorithms and techniques that power handwriting recognition, shedding light on the innovations that bridge the gap between the analog strokes of a pen and the digital bytes of a computer.
 
 \section* {Fundemental Concepts}
+So what is machine learning? Essentially, machine learning is a subset of artificial intelligence that allows the systems and software to learn and improve from the dataset or experience without being explicitly programmed. This learning process is driven by algorithms that interpret and process data, extract patterns and make decisions. In handwriting recognition, the algorithms play a vital role in decoding the diversity and complexity of human handwriting. Machine learning can be divided into three main types: supervised learning, where models are trained on labeled data; unsupervised learning, which processes unlabeled data and aims to discover hidden patterns; and reinforcement learning, where models learn through trial and error.Each learning type has a unique impact on handwriting recognition.
+
 In the realm of machine learning, a foundational understanding is crucial for advancing applications such as handwriting recognition. And Since handwriting is process of training in machine learning, or more accurately, in deep learning, We need to figure out, the difference between each algorithm, including CNN, RNN and LSTNs, also, we have to deeply distinguish the supervised and unsupervised learning in machine learning field distinctively.
 
-\paragraph{Basics of Machine Learning}
-So what is machine learning? Essentially, machine learning is a subset of artificial intelligence that allows systems to learn and improve from experience without being explicitly programmed. This learning process is driven by algorithms that interpret and process data, extract patterns and make decisions. In handwriting recognition, these algorithms play a crucial role in decoding the diversity and complexity of human handwriting. Machine learning can be divided into three main types: supervised learning, where models are trained on labeled data; unsupervised learning, which processes unlabeled data and aims to discover hidden patterns; and reinforcement learning, where models learn through trial and error. Decision-making techniques. Each learning type has a unique impact on handwriting recognition.
-
 \paragraph{Handwriting Recognition Specifics}
-Similarly, handwriting is also a process of the training in the field of machine learning. As a specialized application of machine learning, it entails the intricate process of converting handwritten text into a digital format that machines can interpret. This task presents unique challenges, primarily due to the vast variability and individuality inherent in human handwriting. Unlike typed text, handwritten characters and words can vary greatly in size, style, alignment, and stroke thickness, even within a single document. Additionally, cursive handwriting introduces complexities such as connected letters and overlapping strokes, making the task of segmentation and recognition notably challenging. In the context of machine learning, these challenges necessitate sophisticated algorithms capable of handling such variability and ambiguity.
+The handwriting is also a process of the training in the field of machine learning. As a specialized application of machine learning, it entails the intricate process of converting handwritten text into a digital format that machines can interpret. This task presents unique challenges, primarily due to the vast variability and individuality inherent in human handwriting. Unlike typed text, handwritten characters and words can vary greatly in size, style, alignment, and stroke thickness, even within a single document. Additionally, cursive handwriting introduces complexities such as connected letters and overlapping strokes, making the task of segmentation and recognition notably challenging. In the context of machine learning, these challenges necessitate sophisticated algorithms capable of handling such variability and ambiguity.
 
 There are two primary modes of handwriting recognition exist: offline and online. Offline recognition involves processing static images of handwritten text, or the image or figure has already been complete, instance like scanned or printed documents and photographs. Under this circumstances, the focus lies in accurately discerning characters and words from a fixed representation, often requiring robust feature extraction and pattern recognition techniques. Online handwriting recognition, in contrast, deals with real-time data. It will translate the words from the scratch that the user made, such as the input from a stylus or digital pen, where the temporal sequence of strokes provides additional context for recognition. This mode can leverage dynamic information like stroke order, pressure, and speed, offering a different dimension of data for machine learning models to analyze.
 
@@ -59,7 +58,6 @@ The Traditional Machine Learning Approaches is the most fundamental and a little
 Other approaches of Traditional Machine Learning includes:
 \begin{itemize}
     \item \textbf{k-nearest neighbors (KNN)}: KNN is a non-parametric method for classification and regression. It is based on a simple principle, which is predict the label of a point by looking at the "k" closest labeled points and taking a majority vote or average. This method is particularly effective in scenarios with irregular decision boundaries.
-
 
     \item \textbf{Support vector machines (SVM)}: SVM is very powerful for classification tasks, especially in high-dimensional spaces. They work by finding the hyperplane that best divides the dataset into categories. The ability of SVM to handle large feature spaces and its effectiveness when the number of dimensions exceeds the number of samples makes it a valuable tool in machine learning.
 
@@ -96,7 +94,7 @@ In order to solve this, and let the We will introduce  the mathematical constant
 \label{table:your_label}
 \end{table}
 
-As you can see
+As you can see, if we first use exponential function, add them together to obtain a sum, then we use this sum as the denominator, we can get a value between 0 and 1. And this number is what we want. However, if you want these values contain the meaning of probability, or, in other words, "become the probability", you may need to add the activation function. In the example below, the code will show how the activation function works.
 
 \section*{Code Elucidation}
 The python file in my Code folder represents an examplar of the handwriting recognition in machine learning, the purpose of this file is first, we use all the pictures in MNIST Dataset to train and optimize the model, then it will ramdomly extract several pictures from the MNIST Dataset to see its result of prediction, the code was divided into four parts:
@@ -122,10 +120,10 @@ This is the first paragraph of the code, it defined 5 layers, the first layer fc
         return x
 \end{verbatim}
 
-This paragraph just put an ReLu function outside of the layers and that is the activation function of the layer to ensure to produce the real probability. 
+This paragraph just put an ReLu function outside of the layers and that is the activation function of the layer to ensure to produce the real probability. We have a variaty of activation functions to choose, including 
 
 \begin{verbatim}
-    def get_data_loader(is_train): #Part 1
+def get_data_loader(is_train): #Part 1
     to_tensor = transforms.Compose([transforms.ToTensor()])
     data_set = MNIST("", is_train, transform=to_tensor, download=True)
     return DataLoader(data_set, batch_size=20, shuffle=True)
@@ -145,6 +143,8 @@ def evaluate(test_data, net): #Part 2
 
 This paragraph was divided into two parts, the first part just import data from previous layers and make an output as a DataLoader, and the second, The evaluate function is used to estimate the accuracy of the recognition. First, we extract the data from the training set, calculate the accuracy of the neural network, and we compare this value to the Dataset. So these are the normal step of doing such operations in machine learning, especially when training models for handwriting recognition. 
 
+\section*{Discussion}
+If you merge the code above with this line of code below, 
 \bibliographystyle{plain}
 \bibliography{Citations.bib}
 \cite{824821}
